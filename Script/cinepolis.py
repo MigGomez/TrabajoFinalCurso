@@ -100,5 +100,5 @@ for u in urls:
 print(matriz)
 data_df = pd.DataFrame(matriz1)
 df = pd.DataFrame(matriz)
-data_df.to_excel('cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx')
+data_df.to_excel('cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 df.to_excel('cinepolis1 - '+today.strftime('%d-%m-%Y')+'.xlsx')
