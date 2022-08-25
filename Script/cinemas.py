@@ -7,6 +7,7 @@ from datetime import date
 
 today = date.today()
 
+
 # usa el web driver compatible con la version del navegador chrome, si se actualiza se tiene que descargar otro drive
 browser = webdriver.Chrome('C:\\chromedriver.exe')
 
@@ -69,8 +70,8 @@ for a in s1(id1[1]):
         #df[matriz] = matriz.tolist()
 #print(matriz)
 
-df = pd.DataFrame(matriz)
-print(df)
+df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','Hora'])
+#print(df)
 
-df.to_excel('cinemas - '+today.strftime('%d-%m-%Y')+'.xlsx')
+df.to_excel('cinemas - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 browser.close()

@@ -4,6 +4,8 @@ from datetime import date
 import pandas as pd
 
 today = date.today()
+ub=['El salvador','Guatemala','Honduras','Panama','Costa Rica']
+count=0
 
 # usa el web driver compatible con la version del nabegador chrome, si se actualiza se tiene que descargar otro drive
 browser = webdriver.Chrome('C:\\chromedriver.exe')
@@ -51,7 +53,7 @@ for u in urls:
                             };
                            return r1;
                            ''')
-    print(p3)
+    #print(p3)
     
     for i in p3:            
         browser.get(u+'/'+i+'/')
@@ -92,13 +94,17 @@ for u in urls:
         
         for l in p5:
             l[1]=l[1].split(' ')[0].replace('-',' ')
-        matriz+=p5
-        #print(p5)
-        matriz1+=p5
-        #matriz1.append([p5[0,0],p5[0,1],p5[0,2]])
+            for h in l[3]:
+                a=today.strftime('%d-%m-%Y'),ub[count],l[0],'Cinepolis',l[1],l[2],h
+                #print(a)
+                matriz.append(a)
+       
+    count+=1 
+            
         
-print(matriz)
-data_df = pd.DataFrame(matriz1)
-df = pd.DataFrame(matriz)
+#print(matriz)
+data_df = pd.DataFrame(matriz,columns=['Fecha','Pais','Ciudad','Cine','Nombre Cine','Titulo','Hora'])
+#df = pd.DataFrame(matriz)
 data_df.to_excel('cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
-df.to_excel('cinepolis1 - '+today.strftime('%d-%m-%Y')+'.xlsx')
+#df.to_excel('cinepolis1 - '+today.strftime('%d-%m-%Y')+'.xlsx')
+browser.close()

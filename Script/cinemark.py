@@ -37,7 +37,7 @@ p1 = browser.execute_script(vector+hijos+'var r1=[];' +
                             'v(document.querySelector("#accordion")).forEach(el1 =>{v(h(el1,[0,1,0,0])).forEach(el2=>{r1.push([h(el1,[0,0,0]).innerText,h(el2,[0]).innerText,h(el2,[0]).href]);})});' +
                             'return r1;')
 #print(p1)
-matriz1=list()
+matriz=list()
 for i in p1:
     browser.get(i[2])
     time.sleep(2)
@@ -51,13 +51,17 @@ for i in p1:
     #p3=[today.strftime('%d-%m-%Y'),p2[0][0],'Cinemark',p2[0][1],p2[0][2],p2[0][3]]
     #print(p2)
     #print(p3)
-    matriz1+=p2
+    for l in p2:
+        a= today.strftime('%d-%m-%Y'),l[0],'Cinemark',l[1],l[2],l[3]
+        matriz.append(a)    
+
+    #matriz+=p2
     
     #matriz1.append([today.strftime('%d-%m-%Y'),p2[0][0],'Cinemark',p2[0][1],p2[0][2],p2[0][3]])
     #print(matriz1)
 
     
-df = pd.DataFrame(matriz1,columns=['Pais','Sucursal','Titulo','Hora'])
+df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','Hora'])
 df=df [df.Pais != 'Curacao']
-df.to_excel('Cinemark - '+today.strftime('%d-%m-%Y')+'.xlsx')
+df.to_excel('Cinemark - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 browser.close()
