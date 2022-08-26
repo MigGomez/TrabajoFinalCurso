@@ -95,7 +95,7 @@ for u in urls:
         for l in p5:
             l[1]=l[1].split(' ')[0].replace('-',' ')
             for h in l[3]:
-                a=today.strftime('%d-%m-%Y'),ub[count],l[0],'Cinepolis',l[1],l[2],h
+                a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],h
                 #print(a)
                 matriz.append(a)
        
@@ -103,7 +103,7 @@ for u in urls:
             
         
 #print(matriz)
-data_df = pd.DataFrame(matriz,columns=['Fecha','Pais','Ciudad','Cine','Nombre Cine','Titulo','Hora'])
+data_df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','Hora'])
 #df = pd.DataFrame(matriz)
 data_df.to_excel('cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 #df.to_excel('cinepolis1 - '+today.strftime('%d-%m-%Y')+'.xlsx')
