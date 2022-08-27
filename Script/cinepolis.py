@@ -31,11 +31,7 @@ hijos = ('''function h(e1,v1){
 
 
 
-urls = ['https://cinepolis.com.sv/cartelera',
-        'https://cinepolis.com.gt/cartelera',
-        'https://cinepolis.com.hn/cartelera',
-        'https://www.cinepolis.com.pa/cartelera',
-        'https://www.cinepolis.co.cr/cartelera']
+urls = ['https://cinepolis.com.sv/cartelera']
 matriz=list()
 matriz1=list()
 for u in urls:
@@ -93,7 +89,15 @@ for u in urls:
                                        return r1;''')
         
         for l in p5:
-            l[1]=l[1].split(' ')[0].replace('-',' ')
+            print(l)
+            l[1]=l[1].strip().split(' ')[0].replace('cinepolis',' ').replace('vip','').replace('-',' ')
+            #l[1]=l[1].split(' ')[1].replace('vip',' ')
+            #l[1]=l[1].split(' ')[1].replace('-',' ')
+
+            #l[1]=l[1].split(' ')[0].replace('-',' ')
+
+            #l[1]=l[1].split(' ')[0].replace('cinepolis',' ',1)
+            print(l[1])
             for h in l[3]:
                 a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],h
                 #print(a)
