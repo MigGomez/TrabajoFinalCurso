@@ -31,12 +31,16 @@ hijos = ('''function h(e1,v1){
 
 
 
-urls = ['https://cinepolis.com.sv/cartelera']
+urls = ['https://cinepolis.com.sv/cartelera',
+        'https://cinepolis.com.gt/cartelera',
+        'https://cinepolis.com.hn/cartelera',
+        'https://www.cinepolis.com.pa/cartelera',
+        'https://www.cinepolis.co.cr/cartelera']
 matriz=list()
 matriz1=list()
 for u in urls:
     browser.get(u)
-    time.sleep(5)
+    time.sleep(2)
     
     
     elemento1 = 'document.querySelector("#cmbCiudades")'
@@ -54,7 +58,7 @@ for u in urls:
     for i in p3:            
         browser.get(u+'/'+i+'/')
         i = i.replace('-', ' ')
-        time.sleep(5)
+        time.sleep(2)
         p6=vector+hijos+'''var r1=[];
                                        for (var v0=4;v0<v('''+elemento3+''').length;v0++){
                                             var s1=v('''+elemento3+''')[v0];
@@ -89,16 +93,18 @@ for u in urls:
                                        return r1;''')
         
         for l in p5:
-            print(l)
+            #print(l)
             l[1]=l[1].strip().split(' ')[0].replace('cinepolis',' ').replace('vip','').replace('-',' ')
+            l[1]=l[1].strip()
             #l[1]=l[1].split(' ')[1].replace('vip',' ')
             #l[1]=l[1].split(' ')[1].replace('-',' ')
 
             #l[1]=l[1].split(' ')[0].replace('-',' ')
 
             #l[1]=l[1].split(' ')[0].replace('cinepolis',' ',1)
-            print(l[1])
+            #print(l[1])
             for h in l[3]:
+
                 a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],h
                 #print(a)
                 matriz.append(a)
