@@ -1,4 +1,7 @@
+import re
 import time
+from datetime import datetime
+from xmlrpc.client import DateTime
 from selenium import webdriver
 from datetime import date
 import pandas as pd
@@ -90,15 +93,10 @@ for u in urls:
         
         for l in p5:
             print(l)
-            l[1]=l[1].strip().split(' ')[0].replace('cinepolis',' ').replace('vip','').replace('-',' ')
-            #l[1]=l[1].split(' ')[1].replace('vip',' ')
-            #l[1]=l[1].split(' ')[1].replace('-',' ')
-
-            #l[1]=l[1].split(' ')[0].replace('-',' ')
-
-            #l[1]=l[1].split(' ')[0].replace('cinepolis',' ',1)
-            print(l[1])
-            for h in l[3]:
+            l[1]=l[1].strip().split(' ')[0].replace('cinepolis','').replace('-',' ')
+           
+            for h in l[3]:         
+             
                 a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],h
                 #print(a)
                 matriz.append(a)

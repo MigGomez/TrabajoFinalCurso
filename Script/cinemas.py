@@ -3,10 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 import pandas as pd
-from datetime import date
+from datetime import date, datetime
 
 today = date.today()
-
 
 # usa el web driver compatible con la version del navegador chrome, si se actualiza se tiene que descargar otro drive
 browser = webdriver.Chrome('C:\\chromedriver.exe')
@@ -63,8 +62,13 @@ for a in s1(id1[1]):
         for c in s1(id1[3]):
             s2(id1[3], c)
             for d in s1(id1[4]):
+                
+                hora=datetime.strptime(d[0], '%I:%M %p')
+                h=hora.strftime('%H:%M')
+                   
                 x1.append(d[0])
-                matriz.append([today.strftime('%d-%m-%Y'),'Nicaragua','Cinemas',a[0],b[0],d[0]])
+                #print(hora)
+                matriz.append([today.strftime('%d-%m-%Y'),'Nicaragua','Cinemas',a[0],b[0],h])
             
         #matriz.append([a[0],b[0],x1])
         #df[matriz] = matriz.tolist()
