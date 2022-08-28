@@ -33,12 +33,14 @@ hijos = ('''function h(e1,v1){
             ''')
 
 
-
 urls = ['https://cinepolis.com.sv/cartelera',
         'https://cinepolis.com.gt/cartelera',
         'https://cinepolis.com.hn/cartelera',
         'https://www.cinepolis.com.pa/cartelera',
         'https://www.cinepolis.co.cr/cartelera']
+
+
+
 matriz=list()
 matriz1=list()
 for u in urls:
@@ -102,9 +104,16 @@ for u in urls:
             l[1]=l[1].strip()
 
            
-            for h in l[3]:         
-
-                a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],h
+            for h in l[3]:
+             
+                if (count == 3):         
+                    hora=datetime.strptime(h, '%I:%M %p')
+                    hora=hora.strftime('%H:%M')
+                    
+                else:
+                    hora=h
+                
+                a=today.strftime('%d-%m-%Y'),ub[count],'Cinepolis',l[1],l[2],hora
                 #print(a)
                 matriz.append(a)
        
