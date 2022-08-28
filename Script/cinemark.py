@@ -63,5 +63,7 @@ for i in p1:
     
 df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','Hora'])
 df=df [df.Pais != 'Curacao']
+df.loc[df.Pais=='Panamá','Pais']='Panama'
+
 df.to_excel('Cinemark - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 browser.close()
