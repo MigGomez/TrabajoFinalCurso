@@ -78,5 +78,5 @@ for a in s1(id1[1]):
 df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','Hora'])
 #print(df)
 
-df.to_excel('cinemas - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
+df.to_excel('Data Collection/Cinemas - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 browser.close()

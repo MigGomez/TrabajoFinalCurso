@@ -127,6 +127,6 @@ data_df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titu
 #Corrige el nombre del pais para que coincida con los otros cines
 data_df.loc[data_df.Pais=='El salvador','Pais']='El Salvador'
 
-data_df.to_excel('cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
+data_df.to_excel('Data Collection/Cinepolis - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 #df.to_excel('cinepolis1 - '+today.strftime('%d-%m-%Y')+'.xlsx')
 browser.close()
