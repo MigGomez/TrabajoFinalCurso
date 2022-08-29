@@ -5,6 +5,9 @@ from datetime import date
 
 today = date.today()
 
+#generamos el dataframe para concatenar los paises
+df_fn = pd.DataFrame()
+
 df_dic = pd.read_excel('Diccionario de datos/dic_nombreCine.xlsx')
 paises = ['El Salvador','Guatemala', 'Honduras', 'Nicaragua', 'Panama', "Costa Rica"]
 df_titulos = pd.read_excel('Diccionario de datos/dic_Titulos.xlsx')
@@ -56,8 +59,20 @@ for c in paises:
         elif "Rtk" in i:
             df = df.drop([i], axis=1)
 
-    df.to_excel('Data Transformation/'+c+'.xlsx', sheet_name=c, index=False)
-   
+    df.insert(0, "Pais", c, allow_duplicates=False)
+
+    #h = list(df)
+    #for i in h:
+       # if "$" in i:
+        #    df[i]=df[i].apply('{:.2f}'.format)
+         #   df[i]='$'+df[i]
+        
+    df_fn = pd.concat([df_fn, df], axis=0)
+
+    #df.to_excel('Data Transformation/'+c+'.xlsx', sheet_name=c, index=False)
+
+df_fn.to_excel('Data Transformation/Horarios/Ingresos.xlsx',sheet_name="Ingresos Centro America", index=False)
+
 df_t = pd.DataFrame(titulos)
 df_t = df_t.drop_duplicates()
 df_titulos = pd.concat([df_titulos, df_t], axis=0)

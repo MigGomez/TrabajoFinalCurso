@@ -31,4 +31,4 @@ for c in cine:
     #df.to_excel('Data Transformation/'+c+' - '+fecha+'.xlsx', index=False)
 
 #guarda un solo archivo con los 3 cines
-df_fn.to_excel('Data Transformation/Horarios/Horarios - '+fecha+'.xlsx', index=False)
+df_fn.to_excel('Data Transformation/Horarios/Horarios - '+fecha+'.xlsx',sheet_name="Horarios", index=False)
