@@ -71,6 +71,8 @@ for c in paises:
 
     #df.to_excel('Data Transformation/'+c+'.xlsx', sheet_name=c, index=False)
 
+
+
 df_fn.to_excel('Data Transformation/Horarios/Ingresos.xlsx',sheet_name="Ingresos Centro America", index=False)
 
 df_t = pd.DataFrame(titulos)
@@ -79,3 +81,39 @@ df_titulos = pd.concat([df_titulos, df_t], axis=0)
 df_titulos = df_titulos.drop_duplicates()
 
 df_titulos.to_excel('Diccionario de datos/dic_Titulos.xlsx',  index=False)
+
+
+#Modificamos el archivo ingresos otra vez
+df = pd.read_excel('Data Transformation/Horarios/Ingresos.xlsx')
+a=int()
+ingresos = list()
+adm = list()
+for i in list(df):
+    if "$" in i:
+        ingresos.append(i)
+        a+=1
+    
+    if "Adm" in i:
+        adm.append(i)
+        #print(i)
+
+filas=list()
+for nc in df.index:
+    
+    for fn in range(a):
+        l = ingresos[fn], df['Pais'][nc], df['Nombre Cine'][nc], df['Titulo'][nc], df['Ciudad'][nc], df['Cine'][nc], df[ingresos[fn]][nc], df[adm[fn]][nc]
+        filas.append(l)
+   
+     
+df_nuevo = pd.DataFrame(filas, columns=['Fecha','Pais','Nombre Cine','Titulo','Ciudad','Cine','Ingresos','Asistencia'])
+
+fech = df_nuevo['Fecha'].unique()
+from datetime import datetime
+
+for i in fech:
+    c = i+"2022"
+    a = datetime.strptime(c,'%a  %d-%b $%Y')
+    #print(a.strftime('%d-%m-%Y'))
+    df_nuevo['Fecha'].replace([i],[a.strftime('%d-%m-%Y')], inplace=True)
+
+df_nuevo.to_excel('Data Transformation/Horarios/Ingresos.xlsx', sheet_name="Ingresos Centro America", index=False)
