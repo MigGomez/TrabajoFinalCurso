@@ -65,5 +65,5 @@ df = pd.DataFrame(matriz,columns=['Fecha','Pais','Cine','Nombre Cine','Titulo','
 df=df [df.Pais != 'Curacao']
 df.loc[df.Pais=='Panamá','Pais']='Panama'
 
-df.to_excel('Cinemark - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
+df.to_excel('Data Collection/Cinemark - '+today.strftime('%d-%m-%Y')+'.xlsx', index=False)
 browser.close()
